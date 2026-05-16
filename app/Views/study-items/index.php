@@ -18,7 +18,7 @@
         </tr>
         </thead>
         <tbody>
-        <?php foreach ($items as $item): ?>
+<?php foreach (($items ?? []) as $item): ?>
             <tr>
                 <td><?= e($item['item_type']) ?></td>
                 <td>
@@ -32,9 +32,15 @@
                 <td><?= (int) $item['ai_ready'] === 1 ? 'Ready' : 'Pending' ?></td>
                 <td class="text-end">
                     <a class="btn btn-sm btn-outline-primary" href="<?= e(url('/study-items/edit/' . $item['id'])) ?>">Edit</a>
-                    <form class="d-inline" method="post" action="<?= e(url('/study-items/delete/' . $item['id'])) ?>">
+                    <button type="button" class="btn btn-sm btn-outline-danger js-confirm-delete"
+                            data-delete-target="form-delete-<?= e($item['id']) ?>"
+                            data-confirm-title="Delete study item"
+                            data-confirm-message="This will delete the study item record. Proceed?">
+                        Delete
+                    </button>
+                    <form id="form-delete-<?= e($item['id']) ?>" class="d-inline" method="post" action="<?= e(url('/study-items/delete/' . $item['id'])) ?>">
                         <?= csrf_field() ?>
-                        <button class="btn btn-sm btn-outline-danger" type="submit" onclick="return confirm('Delete this study item?')">Delete</button>
+                        <button class="d-none" type="submit">Confirm Delete</button>
                     </form>
                 </td>
             </tr>

@@ -19,7 +19,7 @@
         </tr>
         </thead>
         <tbody>
-        <?php foreach ($entries as $entry): ?>
+        <?php foreach (($entries ?? []) as $entry): ?>
             <tr>
                 <td>
                     <strong><?= e($entry['title']) ?></strong>
@@ -34,9 +34,15 @@
                 <td>v<?= e($entry['version_no']) ?></td>
                 <td class="text-end">
                     <a class="btn btn-sm btn-outline-primary" href="<?= e(url('/knowledge/edit/' . $entry['id'])) ?>">Edit</a>
-                    <form class="d-inline" method="post" action="<?= e(url('/knowledge/delete/' . $entry['id'])) ?>">
+                    <button type="button" class="btn btn-sm btn-outline-danger js-confirm-delete"
+                            data-delete-target="form-delete-<?= e($entry['id']) ?>"
+                            data-confirm-title="Delete knowledge entry"
+                            data-confirm-message="This will delete this knowledge entry. Proceed?">
+                        Delete
+                    </button>
+                    <form id="form-delete-<?= e($entry['id']) ?>" class="d-inline" method="post" action="<?= e(url('/knowledge/delete/' . $entry['id'])) ?>">
                         <?= csrf_field() ?>
-                        <button class="btn btn-sm btn-outline-danger" type="submit" onclick="return confirm('Delete this entry?')">Delete</button>
+                        <button class="d-none" type="submit">Confirm Delete</button>
                     </form>
                 </td>
             </tr>

@@ -18,7 +18,7 @@
         </tr>
         </thead>
         <tbody>
-        <?php foreach ($provisions as $provision): ?>
+        <?php foreach (($provisions ?? []) as $provision): ?>
             <tr>
                 <td><code><?= e($provision['reference_code']) ?></code></td>
                 <td>
@@ -32,9 +32,15 @@
                 <td><span class="badge text-bg-<?= e(badge_class((string) $provision['status'])) ?>"><?= e($provision['status']) ?></span></td>
                 <td class="text-end">
                     <a class="btn btn-sm btn-outline-primary" href="<?= e(url('/legal-provisions/edit/' . $provision['id'])) ?>">Edit</a>
-                    <form class="d-inline" method="post" action="<?= e(url('/legal-provisions/delete/' . $provision['id'])) ?>">
+                    <button type="button" class="btn btn-sm btn-outline-danger js-confirm-delete"
+                            data-delete-target="form-delete-<?= e($provision['id']) ?>"
+                            data-confirm-title="Delete provision"
+                            data-confirm-message="This will delete the provision record. Proceed?">
+                        Delete
+                    </button>
+                    <form id="form-delete-<?= e($provision['id']) ?>" class="d-inline" method="post" action="<?= e(url('/legal-provisions/delete/' . $provision['id'])) ?>">
                         <?= csrf_field() ?>
-                        <button class="btn btn-sm btn-outline-danger" type="submit" onclick="return confirm('Delete this provision?')">Delete</button>
+                        <button class="d-none" type="submit">Confirm Delete</button>
                     </form>
                 </td>
             </tr>

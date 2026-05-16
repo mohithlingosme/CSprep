@@ -111,8 +111,10 @@ function csrf_token(): string
 
 function csrf_field(): string
 {
+    // name `_token` is required by verify_csrf()
     return '<input type="hidden" name="_token" value="' . e(csrf_token()) . '">';
 }
+
 
 function verify_csrf(): void
 {

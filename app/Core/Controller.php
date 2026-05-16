@@ -53,8 +53,24 @@ abstract class Controller
             exit('Method not allowed.');
         }
 
+        $this->validateCsrfOrDie();
+    }
+
+    protected function csrfToken(): string
+    {
+        return csrf_token();
+    }
+
+    protected function csrfField(): string
+    {
+        return csrf_field();
+    }
+
+    protected function validateCsrfOrDie(): void
+    {
         verify_csrf();
     }
+
 
     protected function requireFields(array $fields): array
     {

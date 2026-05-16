@@ -30,9 +30,15 @@
                 <td><?= e(format_date($document['created_at'])) ?></td>
                 <td class="text-end">
                     <a class="btn btn-sm btn-outline-primary" href="<?= e(url('/source-documents/edit/' . $document['id'])) ?>">Edit</a>
-                    <form class="d-inline" method="post" action="<?= e(url('/source-documents/delete/' . $document['id'])) ?>">
+<button type="button" class="btn btn-sm btn-outline-danger js-confirm-delete"
+                            data-delete-target="form-delete-<?= e($document['id']) ?>"
+                            data-confirm-title="Delete source document"
+                            data-confirm-message="This will delete the source document record. Proceed?">
+                        Delete
+                    </button>
+                    <form id="form-delete-<?= e($document['id']) ?>" class="d-inline" method="post" action="<?= e(url('/source-documents/delete/' . $document['id'])) ?>">
                         <?= csrf_field() ?>
-                        <button class="btn btn-sm btn-outline-danger" type="submit" onclick="return confirm('Delete this source document?')">Delete</button>
+                        <button class="d-none" type="submit">Confirm Delete</button>
                     </form>
                 </td>
             </tr>

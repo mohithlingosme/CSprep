@@ -12,11 +12,30 @@ final class TopicController extends Controller
 {
     public function index(): void
     {
+        $filters = [
+            'chapter_id' => $this->input('chapter_id'),
+            'provision_query' => $this->input('provision_query'),
+            'sort' => $this->input('sort', 'default'),
+            'dir' => $this->input('dir', 'asc'),
+        ];
+
+        $topicModel = new TopicModel();
+        $topics = $topicModel->listDetailedWithFilters($filters);
+
+        $topicIds = array_map(static fn (array $t): int => (int) ($t['id'] ?? 0), $topics);
+        $topicIds = array_values(array_filter($topicIds, static fn (int $id): bool => $id > 0));
+
+        $provisionGroups = $topicModel->provisionGroupsByTopicIds($topicIds);
+
         $this->render('topics/index', [
             'title' => 'Topic Builder',
-            'topics' => (new TopicModel())->listDetailed(),
+            'topics' => $topics,
+            'provisionGroups' => $provisionGroups,
+            'filters' => $filters,
+            'chapters' => (new ChapterModel())->options(),
         ]);
     }
+
 
     public function create(): void
     {

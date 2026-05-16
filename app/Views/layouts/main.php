@@ -1,5 +1,10 @@
-<?php $flashMessage = flash('message'); ?>
+<?php
+$title = $title ?? '';
+$content = $content ?? '';
+$flashMessage = flash('message');
+?>
 <!DOCTYPE html>
+
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -14,6 +19,8 @@
 </head>
 <body>
 <?php if (is_guest() && request_path() === '/login'): ?>
+    <?php /* $content/$title are extracted by Controller::render */ ?>
+
     <main class="app-shell auth-shell container-fluid">
         <?php if ($flashMessage): ?>
             <div class="position-fixed top-0 start-50 translate-middle-x p-3" style="z-index: 1080; width: min(520px, calc(100% - 24px));">
@@ -87,5 +94,42 @@
 <script src="https://cdn.datatables.net/1.13.8/js/jquery.dataTables.min.js"></script>
 <script src="https://cdn.datatables.net/1.13.8/js/dataTables.bootstrap5.min.js"></script>
 <script src="<?= e(asset('js/app.js')) ?>"></script>
+<?php require dirname(__DIR__) . '/partials/confirm-delete-modal.php'; ?>
+<script>
+(function () {
+  const modalEl = document.getElementById('confirmDeleteModal');
+  if (!modalEl) return;
+
+
+  const formToSubmit = { el: null };
+
+  modalEl.addEventListener('show.bs.modal', function (event) {
+    const button = event.relatedTarget;
+    const formId = button?.getAttribute?.('data-delete-target');
+    const title = button?.getAttribute?.('data-confirm-title') || 'Confirm delete';
+    const message = button?.getAttribute?.('data-confirm-message') || 'Are you sure?';
+
+    const modalTitleEl = modalEl.querySelector('#confirmDeleteModalLabel');
+    const messageEl = modalEl.querySelector('#confirmDeleteModalMessage');
+    if (modalTitleEl) modalTitleEl.textContent = title;
+    if (messageEl) messageEl.textContent = message;
+
+    formToSubmit.el = formId ? document.getElementById(formId) : null;
+  });
+
+  const submitBtn = document.getElementById('confirmDeleteModalSubmit');
+  if (submitBtn) {
+    submitBtn.addEventListener('click', function () {
+      if (formToSubmit.el) formToSubmit.el.submit();
+    });
+  }
+
+  document.querySelectorAll('.js-confirm-delete').forEach((btn) => {
+    btn.setAttribute('data-bs-toggle', 'modal');
+    btn.setAttribute('data-bs-target', '#confirmDeleteModal');
+  });
+})();
+</script>
 </body>
 </html>
+

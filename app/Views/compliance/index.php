@@ -18,7 +18,8 @@
         </tr>
         </thead>
         <tbody>
-        <?php foreach ($items as $item): ?>
+<?php foreach (($items ?? []) as $item): ?>
+            
             <tr>
                 <td>
                     <strong><?= e($item['title']) ?></strong>
@@ -30,11 +31,18 @@
                 <td><?= e(format_date($item['due_date'])) ?></td>
                 <td><span class="badge text-bg-<?= e(badge_class((string) $item['priority'])) ?>"><?= e($item['priority']) ?></span></td>
                 <td><span class="badge text-bg-<?= e(badge_class((string) $item['status'])) ?>"><?= e($item['status']) ?></span></td>
+
                 <td class="text-end">
                     <a class="btn btn-sm btn-outline-primary" href="<?= e(url('/compliance/edit/' . $item['id'])) ?>">Edit</a>
-                    <form class="d-inline" method="post" action="<?= e(url('/compliance/delete/' . $item['id'])) ?>">
+                    <button type="button" class="btn btn-sm btn-outline-danger js-confirm-delete"
+                            data-delete-target="form-delete-<?= e($item['id']) ?>"
+                            data-confirm-title="Delete compliance item"
+                            data-confirm-message="This will delete the compliance item record. Proceed?">
+                        Delete
+                    </button>
+                    <form id="form-delete-<?= e($item['id']) ?>" class="d-inline" method="post" action="<?= e(url('/compliance/delete/' . $item['id'])) ?>">
                         <?= csrf_field() ?>
-                        <button class="btn btn-sm btn-outline-danger" type="submit" onclick="return confirm('Delete this compliance item?')">Delete</button>
+                        <button class="d-none" type="submit">Confirm Delete</button>
                     </form>
                 </td>
             </tr>

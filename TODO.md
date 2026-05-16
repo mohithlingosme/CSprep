@@ -1,15 +1,13 @@
 # TODO
 
-- [ ] Create implementation_plan.md
-- [x] Refactor BulkSyllabusService parse/preview for deterministic parsing and shared logic
-- [x] Harden BulkChaptersTopicsController handle() validation and error flow
-- [x] Clean up bulk-chapters-topics view: remove unused vars and improve empty/invalid handling
-
-- [x] Refactor BulkSyllabusService import: transaction + caching + normalization reuse
-
-- [ ] Harden BulkChaptersTopicsController handle() validation and error flow
-- [ ] Clean up bulk-chapters-topics view: remove unused vars and improve empty/invalid handling
-- [ ] Apply small non-breaking maintainability improvements in Core/Controller and helpers (only if needed)
-- [ ] Manual verification: /imports/bulk-chapters-topics preview/import scenarios
-
+## Topics enhancements
+- [ ] Add filter/sort capable query to `TopicModel` (chapter filter + statute/legal_provision filter + sorting)
+- [ ] Update `TopicController@index` to read query params and pass filtered/sorted topics + dashboard dataset
+- [ ] Update `app/Views/topics/index.php` with filter UI (chapter dropdown + statute text search) and topics-wise dashboard panel
+- [ ] Ensure topic list table shows mapped statute/provision count when filtered
+- [ ] Smoke test routes:
+  - [ ] `/topics` (default)
+  - [ ] `/topics?chapter_id=...`
+  - [ ] `/topics?provision_query=...`
+  - [ ] verify sort via URL params
 

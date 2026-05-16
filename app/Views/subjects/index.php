@@ -19,7 +19,7 @@
         </tr>
         </thead>
         <tbody>
-        <?php foreach ($subjects as $subject): ?>
+        <?php foreach (($subjects ?? []) as $subject): ?>
             <tr>
                 <td><code><?= e($subject['code']) ?></code></td>
                 <td>
@@ -34,9 +34,15 @@
                 <td><span class="badge text-bg-<?= e(badge_class((string) $subject['status'])) ?>"><?= e($subject['status']) ?></span></td>
                 <td class="text-end">
                     <a class="btn btn-sm btn-outline-primary" href="<?= e(url('/subjects/edit/' . $subject['id'])) ?>">Edit</a>
-                    <form class="d-inline" method="post" action="<?= e(url('/subjects/delete/' . $subject['id'])) ?>">
+                    <button type="button" class="btn btn-sm btn-outline-danger js-confirm-delete"
+                            data-delete-target="form-delete-<?= e($subject['id']) ?>"
+                            data-confirm-title="Delete subject"
+                            data-confirm-message="This will delete the subject and related content. Proceed?">
+                        Delete
+                    </button>
+                    <form id="form-delete-<?= e($subject['id']) ?>" class="d-inline" method="post" action="<?= e(url('/subjects/delete/' . $subject['id'])) ?>">
                         <?= csrf_field() ?>
-                        <button class="btn btn-sm btn-outline-danger" type="submit" onclick="return confirm('Delete this subject?')">Delete</button>
+                        <button class="d-none" type="submit">Confirm Delete</button>
                     </form>
                 </td>
             </tr>

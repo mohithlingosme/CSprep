@@ -76,8 +76,13 @@ final class ComplianceController extends Controller
     public function delete(int $id): void
     {
         $this->requirePost();
-        (new ComplianceObligationModel())->delete($id);
-        $this->redirect('/compliance', 'Compliance obligation deleted successfully.');
+
+        try {
+            (new ComplianceObligationModel())->delete($id);
+            $this->redirect('/compliance', 'Compliance obligation deleted successfully.');
+        } catch (\Throwable $e) {
+            $this->redirect('/compliance', 'Delete failed. The record may be referenced by other data.', 'danger');
+        }
     }
 
     private function payload(): array

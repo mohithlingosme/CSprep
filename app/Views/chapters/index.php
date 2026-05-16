@@ -17,7 +17,7 @@
         </tr>
         </thead>
         <tbody>
-        <?php foreach ($chapters as $chapter): ?>
+        <?php foreach (($chapters ?? []) as $chapter): ?>
             <tr>
                 <td><?= e($chapter['subject_name']) ?></td>
                 <td><code><?= e($chapter['code']) ?></code></td>
@@ -30,9 +30,15 @@
                 <td><?= e($chapter['topic_count']) ?></td>
                 <td class="text-end">
                     <a class="btn btn-sm btn-outline-primary" href="<?= e(url('/chapters/edit/' . $chapter['id'])) ?>">Edit</a>
-                    <form class="d-inline" method="post" action="<?= e(url('/chapters/delete/' . $chapter['id'])) ?>">
+                    <button type="button" class="btn btn-sm btn-outline-danger js-confirm-delete"
+                            data-delete-target="form-delete-<?= e($chapter['id']) ?>"
+                            data-confirm-title="Delete chapter"
+                            data-confirm-message="This will delete the chapter and related content. Proceed?">
+                        Delete
+                    </button>
+                    <form id="form-delete-<?= e($chapter['id']) ?>" class="d-inline" method="post" action="<?= e(url('/chapters/delete/' . $chapter['id'])) ?>">
                         <?= csrf_field() ?>
-                        <button class="btn btn-sm btn-outline-danger" type="submit" onclick="return confirm('Delete this chapter?')">Delete</button>
+                        <button class="d-none" type="submit">Confirm Delete</button>
                     </form>
                 </td>
             </tr>

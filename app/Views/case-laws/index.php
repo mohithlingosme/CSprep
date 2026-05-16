@@ -18,7 +18,7 @@
         </tr>
         </thead>
         <tbody>
-        <?php foreach ($caseLaws as $case): ?>
+        <?php foreach (($caseLaws ?? []) as $case): ?>
             <tr>
                 <td>
                     <strong><?= e($case['case_name']) ?></strong>
@@ -32,9 +32,15 @@
                 <td><?= e($case['exam_relevance']) ?>/5</td>
                 <td class="text-end">
                     <a class="btn btn-sm btn-outline-primary" href="<?= e(url('/case-laws/edit/' . $case['id'])) ?>">Edit</a>
-                    <form class="d-inline" method="post" action="<?= e(url('/case-laws/delete/' . $case['id'])) ?>">
+                    <button type="button" class="btn btn-sm btn-outline-danger js-confirm-delete"
+                            data-delete-target="form-delete-<?= e($case['id']) ?>"
+                            data-confirm-title="Delete case law"
+                            data-confirm-message="This will delete the case law record. Proceed?">
+                        Delete
+                    </button>
+                    <form id="form-delete-<?= e($case['id']) ?>" class="d-inline" method="post" action="<?= e(url('/case-laws/delete/' . $case['id'])) ?>">
                         <?= csrf_field() ?>
-                        <button class="btn btn-sm btn-outline-danger" type="submit" onclick="return confirm('Delete this case law record?')">Delete</button>
+                        <button class="d-none" type="submit">Confirm Delete</button>
                     </form>
                 </td>
             </tr>
