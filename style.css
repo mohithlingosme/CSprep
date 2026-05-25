@@ -1,0 +1,5 @@
+body { display: grid; grid-template-columns: 200px 1fr; font-family: sans-serif; }
+.grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 20px; padding: 20px; }
+.card { border: 1px solid #ddd; padding: 15px; border-radius: 8px; box-shadow: 0 2px 5px #f0f0f0; }
+.hidden { display: none; }
+.step-card { border-left: 4px solid #007bff; margin: 10px 0; padding-left: 15px; background: #f9f9f9; }ss

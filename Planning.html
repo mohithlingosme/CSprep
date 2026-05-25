@@ -1,0 +1,347 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Collapsible Course Planning Portal</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: "Times New Roman", serif;
+            background: linear-gradient(to right, #dff6ff, #bde0fe);
+            color: #111;
+            padding: 20px;
+        }
+
+        h1 {
+            text-align: center;
+            background-color: #6c63ff;
+            color: white;
+            padding: 20px;
+            border-radius: 12px;
+            margin-bottom: 30px;
+            font-size: 40px;
+            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+        }
+
+        .course-container {
+            margin-bottom: 20px;
+            border-radius: 12px;
+            overflow: hidden;
+            background-color: white;
+            box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.15);
+        }
+
+        .collapsible {
+            background-color: #8e9cff;
+            color: white;
+            cursor: pointer;
+            padding: 18px;
+            width: 100%;
+            border: none;
+            text-align: left;
+            font-size: 28px;
+            font-weight: bold;
+            transition: 0.3s;
+        }
+
+        .collapsible:hover {
+            background-color: #6c63ff;
+        }
+
+        .content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.4s ease-out;
+            background-color: #f9f9ff;
+        }
+
+        .content-inner {
+            padding: 20px;
+        }
+
+        h3 {
+            margin-top: 20px;
+            margin-bottom: 10px;
+            color: #4b3fcf;
+            font-size: 24px;
+        }
+
+        h4 {
+            margin-top: 15px;
+            margin-bottom: 8px;
+            color: #2f2a7d;
+            font-size: 20px;
+        }
+
+        ul,
+        ol {
+            margin-left: 30px;
+            margin-bottom: 15px;
+        }
+
+        li {
+            padding: 5px 0;
+            font-size: 18px;
+        }
+
+        .footer {
+            text-align: center;
+            margin-top: 40px;
+            font-size: 18px;
+            color: #333;
+        }
+    </style>
+</head>
+
+<body>
+
+    <h1>Course Planning Portal</h1>
+
+    <!-- BBA -->
+    <div class="course-container">
+
+        <button class="collapsible">BBA Subjects</button>
+
+        <div class="content">
+            <div class="content-inner">
+
+                <ol>
+                    <li>Management and Behavioural Process</li>
+                    <li>Business Mathematics</li>
+                    <li>English</li>
+                    <li>Financial Management</li>
+                    <li>Principles of Business Management</li>
+                    <li>Business Economics</li>
+                    <li>Managerial Psychology</li>
+                    <li>Business Communication</li>
+                    <li>Financial Accounting</li>
+                    <li>Management and Services Management</li>
+                    <li>Human Resource Management</li>
+                    <li>Business Statistics and Research Analysis</li>
+                    <li>Strategic Management</li>
+                    <li>Indian Financial System</li>
+                    <li>Global Business Environment</li>
+                    <li>Startup and Entrepreneurship Development</li>
+                    <li>Management Theory and Practice</li>
+                    <li>Business Research Method</li>
+                    <li>Qualitative Research</li>
+                    <li>Business Strategy</li>
+                    <li>Environmental, Social and Governance (ESG)</li>
+                    <li>Business Simulation</li>
+                    <li>Entrepreneurship Development</li>
+                    <li>Production and Operations Management</li>
+                    <li>Business Ethics</li>
+                </ol>
+
+            </div>
+        </div>
+
+    </div>
+
+    <!-- LLB -->
+    <div class="course-container">
+
+        <button class="collapsible">LLB Subjects</button>
+
+        <div class="content">
+            <div class="content-inner">
+
+                <h3>1. Foundational Legal Sciences</h3>
+
+                <ul>
+                    <li>Jurisprudence</li>
+                    <li>Legal Theory</li>
+                    <li>Legal Philosophy</li>
+                    <li>Legal Sociology</li>
+                    <li>Interpretation of Statutes</li>
+                    <li>Legal Research Methodology</li>
+                    <li>Legal Writing and Drafting</li>
+                    <li>Philosophy of Law</li>
+                    <li>Legal Reasoning and Logic</li>
+                    <li>Comparative Law</li>
+                </ul>
+
+                <h3>2. Substantive Law</h3>
+
+                <h4>Public Law</h4>
+
+                <ol>
+                    <li>Constitutional Law</li>
+                    <li>Administrative Law</li>
+                    <li>Criminal Law</li>
+                    <li>Taxation Law</li>
+                    <li>Human Rights Law</li>
+                    <li>Environmental Law</li>
+                    <li>Space Law</li>
+                    <li>International Property Law</li>
+                </ol>
+
+                <h4>Private Law</h4>
+
+                <ul>
+                    <li>Contract Law</li>
+                    <li>Tort Law</li>
+                    <li>Family Law</li>
+                    <li>Property Law</li>
+                </ul>
+
+                <h4>Commercial / Mercantile Law</h4>
+
+                <ul>
+                    <li>Corporate Law</li>
+                    <li>Banking Law</li>
+                    <li>Insurance Law</li>
+                    <li>Company Law</li>
+                </ul>
+
+                <h4>Specialized Regulatory Law</h4>
+
+                <ul>
+                    <li>Cyber Law</li>
+                    <li>Medical Law</li>
+                    <li>Labour Law</li>
+                    <li>Technology Law</li>
+                </ul>
+
+                <h3>3. International Law</h3>
+
+                <ul>
+                    <li>Public International Law</li>
+                    <li>Private International Law</li>
+                    <li>International Trade Law</li>
+                </ul>
+
+                <h3>4. Trade Law</h3>
+
+                <ul>
+                    <li>Competition Law</li>
+                    <li>Consumer Protection Law</li>
+                </ul>
+
+                <h3>5. Procedural Law</h3>
+
+                <ul>
+                    <li>Civil Procedure Code (CPC)</li>
+                    <li>Criminal Procedure Code (CrPC)</li>
+                    <li>Law of Evidence</li>
+                </ul>
+
+                <h3>6. Legal Reference Systems</h3>
+
+                <ul>
+                    <li>Legal Citation Methods</li>
+                    <li>Case Law Research</li>
+                    <li>Legal Databases</li>
+                </ul>
+
+            </div>
+        </div>
+
+    </div>
+
+    <!-- Professional Courses -->
+    <div class="course-container">
+
+        <button class="collapsible">Company Secretary (CS)</button>
+
+        <div class="content">
+            <div class="content-inner">
+                <ul>
+                    <div class="content-inner">
+                        <button class="collapsible">CS Executive</button>
+                        <ol>
+                            <li><h2> Module 1 </h2></li>
+                               <ol>
+                                <li><h3> Jurisprudence, Interpretation and General Laws of India</h3></li>
+                                <li><h3> Company law and Pratice </h3></li>
+                                <li><h3> Setting up of Business, Industrial and Labout law</h3></li>
+                                <li><h3> Corporate and Management Accounting</h3></li>
+                               </ol>
+                            <li><h2> Module 2 </h2></li>
+                               <ol>
+                                 <li><h3> Capital market and securities</h3></li>
+                                 <li><h3> Economic, Commericlal & intellectual property Laws</h3></li>
+                                 <li><h3> Tax Laws and Practice</h3></li>
+                               </ol>
+                        </ol>
+                    </div>
+                </ul>    
+            </div>
+        </div>
+    </div>
+
+
+           <div class="course-container">
+
+        <button class="collapsible">CMA (Cost and Management Accounting)</button>
+
+        <div class="content">
+            <div class="content-inner">
+                </div>
+        </div>
+    </div>
+    <div class="course-container">
+
+        <button class="collapsible"> CA (Chartered Account)</button>
+
+        <div class="content">
+            <div class="content-inner">
+                </div>
+        </div>
+    </div>
+    <div class="course-container">
+
+        <button class="collapsible">ACCA (Association of Chartered Certified Accountants)</button>
+
+        <div class="content">
+            <div class="content-inner">
+                </div>
+        </div>
+    </div>
+<div class="course-container">
+
+        <button class="collapsible">BS In Data Science </button>
+
+        <div class="content">
+            <div class="content-inner">
+                </div>
+        </div>
+    </div>
+              
+    <div class="footer">
+        Designed for Academic and Professional Course Planning
+    </div>
+
+    <script>
+        const collapsibles = document.querySelectorAll(".collapsible");
+
+        collapsibles.forEach(button => {
+
+            button.addEventListener("click", function () {
+
+                this.classList.toggle("active");
+
+                const content = this.nextElementSibling;
+
+                if (content.style.maxHeight) {
+                    content.style.maxHeight = null;
+                } else {
+                    content.style.maxHeight = content.scrollHeight + "px";
+                }
+
+            });
+
+        });
+    </script>
+
+</body>
+
+</html>

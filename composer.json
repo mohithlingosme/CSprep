@@ -1,8 +1,0 @@
-{
-    "name": "corporate-law-bot/erp",
-    "require": {
-        "php": "^8.2",
-        "dompdf/dompdf": "3.1"
-
-    }
-}
